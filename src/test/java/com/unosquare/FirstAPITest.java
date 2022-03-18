@@ -36,8 +36,7 @@ public class FirstAPITest {
 		response.then().body("support.url", equalTo("https://reqres.in/#support-heading"));
 		response.then().body("support.text", equalTo("To keep ReqRes free, contributions towards server costs are appreciated!"));
 		
-		Reporter.log(response.body().asString());
-		
+		Reporter.log(response.body().asString());		
   }
   
   
@@ -61,8 +60,7 @@ public class FirstAPITest {
 		response.then().body("support.url", equalTo("https://reqres.in/#support-heading"));
 		response.then().body("support.text", equalTo("To keep ReqRes free, contributions towards server costs are appreciated!"));
 		
-		Reporter.log(response.body().asString());
-		
+		Reporter.log(response.body().asString());		
   }
  
   
