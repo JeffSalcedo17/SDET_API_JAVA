@@ -1,21 +1,19 @@
 package com.unosquare;
 
-import static org.hamcrest.Matchers.*;
 
-import org.testng.Assert;
-import org.testng.Reporter;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
 
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
-
 public class FirstAPITest {
   @Test
   public void validateJSONBodyHTTPObjectUser() {
-	    RestAssured.baseURI = "https://reqres.in/api/";
+
+    RestAssured.baseURI = "https://reqres.in/api/";
 		RequestSpecification httpRequest = RestAssured.given();
 		Response response = httpRequest.get("/users/2");
 		
@@ -40,7 +38,8 @@ public class FirstAPITest {
   
   @Test
   public void validateJSONBodyHTTPObjectColor() {
-	    RestAssured.baseURI = "https://reqres.in/api/";
+
+    RestAssured.baseURI = "https://reqres.in/api/";
 		RequestSpecification httpRequest = RestAssured.given();
 		Response response = httpRequest.get("/unknown/2");
 		
@@ -60,6 +59,8 @@ public class FirstAPITest {
 		
 		Reporter.log(response.body().asString());		
   }
+
+	      }
  
   
   @BeforeMethod
