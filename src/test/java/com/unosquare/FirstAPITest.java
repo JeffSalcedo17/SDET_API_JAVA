@@ -64,7 +64,81 @@ public class FirstAPITest {
 		Reporter.log(response.body().asString());
 		
   }
+  
+  @Test
+  public void validateJSONBodyUser_Gherkin() {
+	  
+	  String url = "https://reqres.in/api/users/2";
+	  given().
+	  when().
+	  		get(url).
+	  then().assertThat().statusCode(200).assertThat().contentType(ContentType.JSON);
+	  Reporter.log("Success 200 validation");
+	  
+	  given().when().get(url).then().
+	  and().
+	  		assertThat().
+	  		body("data.email", startsWith("janet.weaver")).
+	  and().
+	  		assertThat().
+	  		body("data.email", endsWith("reqres.in")).
+	  and().
+	   		assertThat().
+	   		body("data.first_name", equalTo("Janet")).
+	  and().
+	   		assertThat().
+	   		body("data.last_name", equalTo("Weaver")).
+	  and().
+	   		assertThat().
+	   		body("data.avatar", containsString("https://reqres.in/img/faces")).
+	  and().
+	  		assertThat().
+	  		body("support.url", equalTo("https://reqres.in/#support-heading")).
+	  and().
+	  		assertThat().
+	  		body("support.text", equalTo("To keep ReqRes free, contributions towards server costs are appreciated!"));
+	  
+	  
+	  Reporter.log(given().when().get(url).then().log().body().extract().asString());  
+	  
+}
  
+  
+  @Test
+  public void validateJSONBodyColor_Gherkin() {
+	  
+	  String url = "https://reqres.in/api/unknown/2"; 
+	  
+	  given().
+	  when().
+	  		get(url).
+	  then().assertThat().statusCode(200).assertThat().contentType(ContentType.JSON);
+	  Reporter.log("Sucess 200 validation");
+	  
+	  given().when().get(url).then().
+	  and().
+	  		assertThat().
+	  		body("data.name", equalTo("fuchsia rose")).
+	  and().
+	  		assertThat().
+	  		body("data.year", equalTo(2001)).
+	  and().
+	   		assertThat().
+	   		body("data.color", equalTo("#C74375")).
+	  and().
+	   		assertThat().
+	   		body("data.pantone_value", containsString("17-2031")).
+	  and().
+	  		assertThat().
+	  		body("support.url", equalTo("https://reqres.in/#support-heading")).
+	  and().
+	  		assertThat().
+	  		body("support.text", equalTo("To keep ReqRes free, contributions towards server costs are appreciated!"));
+	  
+	  
+	  Reporter.log(given().when().get(url).then().log().body().extract().asString());  
+	  
+}
   
   @BeforeMethod
   public void beforeMethod() {
